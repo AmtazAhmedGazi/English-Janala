@@ -165,9 +165,12 @@ document.getElementById("btn-search").addEventListener("click", () => {
   if (input == "") {
     const detailsBox = document.getElementById("details-container");
     detailsBox.innerHTML = `
-            <div class="">
-            <h2 class="text-2xl font-bold">
-            No word searched
+            <div class="flex flex-col mt-10">
+            <h2 class="text-3xl font-semibold  text-center">
+            No Word Searched <span class="text-red-500">!</span>
+            </h2>
+            <h2 class="text-xl font-semibold  text-center">
+            Please Type any Word
             </h2>
           </div>
           `;

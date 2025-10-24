@@ -112,7 +112,7 @@ const displayLevelWord = (words) => {
         ${word.pronunciation ? word.pronunciation : "Pronunciation পাওয়া যায়নি"}
         "
         </div>
-        <div class="flex justify-between items-center">
+        <div class="flex justify-between items-center mt-14">
           <button onclick="loadWordDetail(${
             word.id
           })" class="btn bg-[#1A91FF10] hover:bg-[#1A91FF80] ">
@@ -147,3 +147,24 @@ const displayLesson = (lessons) => {
 };
 
 loadLessons();
+
+document.getElementById("btn-search").addEventListener("click", () => {
+  removeActive();
+  const input = document
+    .getElementById("input-search")
+    .value.trim()
+    .toLowerCase();
+  if (input == "") {
+    return;
+  }
+  fetch("https://openapi.programming-hero.com/api/words/all")
+    .then((res) => res.json())
+    .then((data) => {
+      const allWords = data.data;
+
+      const filterWords = allWords.filter((words) =>
+        words.word.toLowerCase().includes(input)
+      );
+      displayLevelWord(filterWords);
+    });
+});
